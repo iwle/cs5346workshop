@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Workshop 1. Part 2</title>
+        <title>Workshop 2, Part 1. Scatter Plot and Random Points</title>
         <script src="https://d3js.org/d3.v6.js"></script>
     </head>
     <body>
@@ -39,12 +39,12 @@
                 const xScale = d3.scaleLinear()
                     .domain([d3.min(dataset, (d) => parseInt(d['x'])),
                             d3.max(dataset, (d) => parseInt(d['x']))])
-                    .range([10, width-30]); // TODO: can be removed for lesson
+                    .range([margins.left, bounded.width]);
 
                 const yScale = d3.scaleLinear()
                       .domain([d3.min(dataset, (d) => d['y']),
                               d3.max(dataset, (d) => d['y'])])
-                      .range([10, height-30]); // TODO: can be removed for lesson
+                      .range([bounded.height, margins.bottom]);
                 
                 const xAxis = d3.axisBottom(xScale)
                 const yAxis = d3.axisLeft(yScale)
@@ -69,15 +69,15 @@
                 .append('circle')
                 .attr('cx', d => (xScale(d['x'])))
                 .attr('cy', d => (yScale(d['y'])))
-                .attr('r', 5) // TODO: can be removed for lesson
+                .attr('r', 5)
                 .style('fill', 'blue')
             
             // Add our axes!
             group.append('g')
-                .attr('transform', `translate(0, ${width-margins.left})`)
+                .attr('transform', `translate(0, ${bounded.height})`)
                 .call(xAxis)
             group.append('g')
-                .attr('transform', `translate(30,0)`)
+                .attr('transform', `translate(${margins.top},0)`)
                 .call(yAxis)
         });
 

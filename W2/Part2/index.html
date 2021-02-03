@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Workshop 1. Part 2</title>
+        <title>Workshop 2, Part 2. Changing Our Data</title>
         <script src="https://d3js.org/d3.v6.js"></script>
     </head>
     <body>
@@ -34,18 +34,18 @@
 
             const group = svg.append('g') // append a group for our visualisations
                 .style('transform', `translate(${margins.left}px, ${margins.top}px)`) // bounded
-
+            console.log(bounded)
             d3.csv('data.csv')
             .then((dataset) => {
                 const xScale = d3.scaleTime()
                     .domain([d3.min(dataset, (d) => new Date(d['date'])),
                             d3.max(dataset, (d) => new Date(d['date']))])
-                    .range([0, bounded.width]); // TODO: can be removed for lesson
+                    .range([0, bounded.width]);
 
                 const yScale = d3.scaleLinear()
                       .domain([d3.min(dataset, (d) => parseInt(d['new_cases'])),
                               d3.max(dataset, (d) => parseInt(d['new_cases']))])
-                      .range([bounded.height, margins.bottom]); // TODO: can be removed for lesson
+                      .range([bounded.height, margins.bottom]);
                 
                 const xAxis = d3.axisBottom(xScale)
                 const yAxis = d3.axisRight(yScale)
@@ -55,12 +55,12 @@
                 const xScaleNew = d3.scaleTime()
                     .domain([d3.min(dataset, (d) => new Date(d['date'])),
                         d3.max(dataset, (d) => new Date(d['date']))])
-                    .range([0, bounded.width]); // TODO: can be removed for lesson
+                    .range([0, bounded.width]);
 
                 const yScaleNew = d3.scaleLinear()
                     .domain([d3.min(dataset, (d) => parseInt(d['total_cases'])),
                             d3.max(dataset, (d) => parseInt(d['total_cases']))])
-                    .range([bounded.height, margins.bottom]); // TODO: can be removed for lesson
+                    .range([bounded.height, margins.bottom]);
 
                 group.selectAll('circle')
                     .data(dataset)
@@ -82,12 +82,12 @@
                 const xScaleNew = d3.scaleTime()
                 .domain([d3.min(dataset, (d) => new Date(d['date'])),
                         d3.max(dataset, (d) => new Date(d['date']))])
-                .range([0, bounded.width]); // TODO: can be removed for lesson
+                .range([0, bounded.width]);
 
                 const yScaleNew = d3.scaleLinear()
                     .domain([d3.min(dataset, (d) => parseInt(d['new_cases'])),
                             d3.max(dataset, (d) => parseInt(d['new_cases']))])
-                    .range([bounded.height, margins.bottom]); // TODO: can be removed for lesson
+                    .range([bounded.height, margins.bottom]);
                     
                 group.selectAll('circle')
                     .data(dataset)
