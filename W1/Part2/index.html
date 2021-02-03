@@ -26,12 +26,12 @@
                 const xValueAxis = d3.scaleLinear()
                     .domain([d3.min(dataset, (d) => parseInt(d['x'])),
                             d3.max(dataset, (d) => parseInt(d['x']))])
-                    .range([10, width-10]); // TODO: can be removed for lesson
+                    .range([10, width-10]); // Answer
 
                 const yValueAxis = d3.scaleLinear()
                       .domain([d3.min(dataset, (d) => d['y']),
                               d3.max(dataset, (d) => d['y'])])
-                      .range([10, height-10]); // TODO: can be removed for lesson
+                      .range([10, height-10]); // Answer
 
                       group.selectAll('circle')
                         .data(dataset)
@@ -39,7 +39,7 @@
                         .append('circle')
                         .attr('cx', d => (xValueAxis(d['x'])))
                         .attr('cy', d => (yValueAxis(d['y'])))
-                        .attr('r', 5) // TODO: can be removed for lesson
+                        .attr('r', 5) // Answer
                         .style('fill', 'blue')
         });
 

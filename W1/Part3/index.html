@@ -26,28 +26,28 @@
                 const xScale = d3.scaleLinear()
                     .domain([d3.min(dataset, (d) => parseInt(d['x'])),
                             d3.max(dataset, (d) => parseInt(d['x']))])
-                    .range([10, width-30]); // TODO: can be removed for lesson
+                    .range([30, width-30]); // Answer
 
                 const yScale = d3.scaleLinear()
                       .domain([d3.min(dataset, (d) => d['y']),
                               d3.max(dataset, (d) => d['y'])])
-                      .range([10, height-30]); // TODO: can be removed for lesson
+                      .range([height-30, 30]); // Answer
                 
-                const xAxis = d3.axisBottom(xScale)
-                const yAxis = d3.axisLeft(yScale)
-
                 group.selectAll('circle')
                     .data(dataset)
                     .enter()
                     .append('circle')
                     .attr('cx', d => (xScale(d['x'])))
                     .attr('cy', d => (yScale(d['y'])))
-                    .attr('r', 5) // TODO: can be removed for lesson
+                    .attr('r', 5) // Answer
                     .style('fill', 'blue')
-                
+
                 // Add our axes!
+                const xAxis = d3.axisBottom(xScale)
+                const yAxis = d3.axisLeft(yScale)
+                
                 group.append('g')
-                    .attr('transform', `translate(0, ${height-20})`)
+                    .attr('transform', `translate(0, ${height-30})`)
                     .call(xAxis)
                 group.append('g')
                     .attr('transform', `translate(30,0)`)
